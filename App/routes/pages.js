@@ -1,6 +1,7 @@
 const express = require('express');
 const db = require('../db/db');  
 const authController = require('../controllers/auth_profile')
+const authControllerMemberAddition = require('../controllers/auth_addShow_member')
 const router = express.Router();
 
 router.get('/',authController.isLoggedIn, (req, res) =>{   
@@ -41,8 +42,22 @@ router.get('/profile/:id',authController.isLoggedIn,(req,res)=>{
     res.redirect('/login');
    }
 })
+router.post('/addmember', authControllerMemberAddition.addMember);
+router.get('/addmember',authController.isLoggedIn, (req,res)=>{
+    if(req.user){
+        res.render('Addmember',{
+            id:req.user.user_id
+        });
+    }else{
+        res.render('Addmember')
+    }
+    
+})
 
 
+router.get('/group/:id',authControllerMemberAddition.showMember,(req,res)=>{
+    res.render('GroupInfo')
+})
 router.get('/newgroup',(req,res)=>{
     res.render('GR');
 })

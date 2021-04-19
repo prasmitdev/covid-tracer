@@ -2,6 +2,7 @@ const express = require('express');
 const authController = require('../controllers/auth_register');
 const authLogin = require('../controllers/auth_login');
 const authNewGroup = require('../controllers/auth_newgroup');
+const authControllerMemberAddition = require('../controllers/auth_addShow_member')
 const authProfileLogOut = require('../controllers/auth_profile')
 
 const router = express.Router();

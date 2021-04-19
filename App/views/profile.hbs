@@ -32,24 +32,35 @@
                 <a href="#" class="btn btn-primary">{{email}}</a>
                 {{/if}}
             </div>
-            <form action="/pro"></form>
+            
         </div>
         </div>
         <div class="col-8">
                 <div class="card text-center">
                     <div class = "card-header">
                         Your Groups 
-                    </div>
+                    </div><br>
                         {{#each result}}
                             <h5 class="card-title">
-                            <a href="#" class="btn btn-primary">{{this.group_name}}</a>
-                            <p><a href="/addmember/{{this.group_id}}"> Add members</a> </p> 
-                        </h5>
+                            <a href="/group/{{this.group_id}}" class="btn btn-primary">{{this.group_name}} </a><i>Unique id: {{this.group_id}}</i>
+                             
+                        </h5><br>
                         {{/each}}
-                         <h5 class="card-title">
-                            <a href="/newgroup" class="btn btn-primary">Create a new group (+)</a>
-                        </h5>
-                    </div>
+                        
+                        <hr>
+                        <br>
+                        <div style="display:flex; justify-content:space-evenly">
+                                <h5 class="card-title">
+                                <a href="/newgroup" class="btn btn-primary">Create a new group (+)</a> <br>
+                                
+                            </h5>
+                            <h5 class="card-title">
+                                <a href="/addmember" class="btn btn-primary">Add members (+)</a> <br>
+                                
+                            </h5>
+
+                        </div>
+                        </div>
                 </div>    
             </div>
         

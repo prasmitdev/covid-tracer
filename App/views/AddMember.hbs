@@ -51,8 +51,8 @@ nav li a:hover{
         <h4>Welcome to the COVID-19 Contact Tracer</h4>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
+            <li><a href="/profile/{{id}}">Profile</a></li>
+            <li><a href="auth/logout">Logout</a></li>
         </ul>
     </nav>
 	<div class="container mt-4">
@@ -61,22 +61,32 @@ nav li a:hover{
                 Add Member
             </div>
         <div class="card-body">
-        <form action="/auth/GR" method="POST">			
+        <form action="/addmember" method="POST">			
 
-					<div class="form-floating mb-3">
-				  <input type="email" required="required" class="form-control" id="floatingInput" placeholder="name@example.com">
-				  <label for="floatingInput">Email address</label>
+          <div class="form-floating mb-3">
+				  <input type="email" required="required" class="form-control" id="floatingInput" placeholder="name@example.com" name="member_email">
+				  <label for="floatingInput">Enter member's email address</label>
 				</div>
 
-				<button type="button" class="btn btn-primary" >
+					<div class="form-floating mb-3">
+				  <input type="text" required="required" class="form-control" id="floatingInput" placeholder="Enter Unique id" name="unique_id">
+				  <label for="floatingInput">Enter group's Unique id</label>
+				</div>
+
+				<button type="submit" class="btn btn-primary" >
 				  Add
 				</button>
 			</form>
         </div>
     </div>
 </div>
-	
-
+	{{#if message}}
+            <h4 class="alert alert-danger mt-4">{{message}}</h4>
+  {{/if}}
+  {{#if messageSuccess}}
+            <h4 class="alert alert-success mt-4">{{messageSuccess}}</h4>
+  {{/if}}
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -94,6 +104,7 @@ nav li a:hover{
       </div>
     </div>
   </div>
+
 </div>
 	
 </body>

@@ -37,7 +37,7 @@ exports.login = async (req,res)=>{
                     httpOnly: true
                 }
                 res.cookie('jwt', token, cookieOptions);                
-                res.status(200).render('profile',{
+                res.status(200).render('index',{
                     name: results[0].first_name,
                     email: email
                 })

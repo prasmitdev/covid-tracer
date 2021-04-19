@@ -13,7 +13,7 @@
         <h4>Welcome to Covid Contact Tracer</h4>
         <ul>
             <li><a href="/">Home</a></li>
-                <li><a href="/profile">Profile</a></li>
+                <li><a href="/profile/{{id}}">Profile</a></li>
                 <li><a href="/auth/logout">Log Out</a></li>
         </ul>
     </nav>
@@ -38,14 +38,14 @@
         <div class="col-8">
                 <div class="card text-center">
                     <div class = "card-header">
-                        Your Groups
+                        Your Groups 
                     </div>
-                        {{#if GName}}
+                        {{#each result}}
                             <h5 class="card-title">
-                            <a href="#" class="btn btn-primary">{{GName}}</a>
-                            <p><a href="#"> Add members</a> </p> 
+                            <a href="#" class="btn btn-primary">{{this.group_name}}</a>
+                            <p><a href="/addmember/{{this.group_id}}"> Add members</a> </p> 
                         </h5>
-                        {{/if}}
+                        {{/each}}
                          <h5 class="card-title">
                             <a href="/newgroup" class="btn btn-primary">Create a new group (+)</a>
                         </h5>

@@ -56,7 +56,8 @@ exports.showMember = (req,res)=>{
         else{
             console.log(result);
             res.render('GroupInfo', {
-                result
+                result,
+                id: req.user.user_id
             })
            
         }

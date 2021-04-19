@@ -17,6 +17,11 @@
 	<input type="email" id="Email" class="input-box" placeholder="Verify Email" required="required" name="Email">
 	<p><button type="submit"  id="SignUp" class="button">Sign Up</button></p>
 	<p><button type="submit"  id="NewMember" class="button" formaction="NewMemberSignUp.html">Add a New Member</button></p>
+
+	{{#if message}}
+		<h4 class="alert alert-success mt-4">{{message}}</h4>
+	{{/if}}
 </div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	</section>
 </body>

@@ -55,9 +55,7 @@ router.get('/addmember',authController.isLoggedIn, (req,res)=>{
 })
 
 
-router.get('/group/:id',authControllerMemberAddition.showMember,(req,res)=>{
-    res.render('GroupInfo')
-})
+router.get('/group/:id',authController.isLoggedIn, authControllerMemberAddition.showMember);
 router.get('/newgroup',(req,res)=>{
     res.render('GR');
 })

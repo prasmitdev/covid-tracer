@@ -1,0 +1,24 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<title>New Member Sign Up</title>
+	<link rel="stylesheet" type="text/css" href="C:\Users\jorda\OneDrive\Documents\Capstone Front End\CSS Code\GR.css">
+	<script src="C:\Users\jorda\OneDrive\Documents\Capstone Front End\JavaScript Code\NewMemberSignUp.js"></script> 
+</head>
+
+<body>
+	<section id="containter" class="card card-container">
+		<div class="sign-up-form">
+	<h1>Group Registration</h1>
+	<form action = "Home.html">
+	<input type="text" required="required" class="input-box" pattern="[A-Za-z ]+" placeholder="Member First Name">
+	<input type="text" required="required" class="input-box"  pattern="[A-Za-z ]+"placeholder="Member Last Name">
+	<input type="number" required="required" class="input-box" placeholder="Age">
+	<input type="email" id="Email" required="required" class="input-box" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[o,r,g,e,d,u,c,o,m]{3,}$" placeholder="Member Email">
+	<input type="tel" required="required" class="input-box" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" placeholder="Member Phone Number">
+	<p><button type="submit"  id="next" class="button" >Sign Up</button></p>
+	<p><button type="submit"  id="next" class="button" formaction="NewMemberSignUp.html">Add a New Member</button></p>
+</div>
+	</section>
+</body>
+</html>

@@ -1,0 +1,11 @@
+select email from users where user_id = "1";
+update `data`.`users` set `email` = 'timbo@gmail.com' where `users`.`user_id` = 1;
+select avg(test_weighted)*100 `health %` from data.overall_health;
+select group_id, user_id from users;
+select group_id, user_id, contacted_user from contact where date_contacted <= '10/03/20';
+select group_id, user_id, contacted_user from contact where date_contacted >= '10/29/20' and date_contacted <= '11/12/20';
+select group_id, user_id, contacted_user from contact;
+select user_id from positive_test where positive = "yes";
+select password from users where user_id = "2";
+update `data`.`users` set `password` = 'test123' where `users`.`user_id` = 2;
+select user_id from positive_test where positive = "no";

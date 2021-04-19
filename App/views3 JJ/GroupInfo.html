@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+</html>
+<head>
+	<title>Group Info</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+	<style type="text/css">
+		td {
+			cursor: pointer;
+		}
+	</style>
+	<script>
+      function calender() {
+        document.getElementById('date').style.display = "inline"
+        document.getElementById("buttonAppear").innerHTML = "<button>Submit</button>";
+      }
+    </script>
+
+</head>
+<body>
+	<style>
+			button {
+			      margin-top: 5px;
+				    line-height: 40px;
+				   
+				    color: white;
+				    padding: 0px 20px;
+				    background: #0275d8;
+				    border: none;
+				    font
+			}
+			
+
+		        nav{
+		    background-color: #563d7c;
+		    color: white;
+		    padding: 30px 60px;
+		    display: flex;
+		    justify-content: space-between;
+		}
+
+		nav ul{
+		    display: flex;
+		    justify-content: space-around;
+		    align-items: center;
+		}
+
+		nav li{
+		    list-style: none;
+		}
+
+		nav li a{
+		    color: white;
+		    text-decoration: none;
+		    font-weight: bold;
+		    padding: 5px 8px;
+		}
+
+		nav li a:hover{
+		    color: green;
+		}
+
+		.avatar-ctn{
+		    text-align: center;
+		}
+		.avatar{
+		    width:65%;
+		    border-bottom: 1px solid rgba(0,0,0,0.125);
+		}
+</style>
+	<nav>
+        <h4>Welcome to the COVID-19 Contact Tracer</h4>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+        </ul>
+    </nav>
+	<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr onclick="calender()">
+      <th scope="row">1</th>
+      <td>Jordan</td>
+      <td>Jacob</td>
+      <td>jordanjacob97@gmail.com</td>
+    </tr>
+    <tr onclick="calender()">
+      <th scope="row">2</th>
+      <td>Prasmit</td>
+      <td>Devkota</td>
+      <td>pd@gmail.com</td>
+    </tr>
+    <tr onclick="calender()">
+      <th scope="row">3</th>
+      <td>Francisco</td>
+      <td>Rodriguez</td>
+      <td>fr@gmail.com</td>
+    </tr>
+  </tbody>
+</table>
+<input type="date" id="date" name="party" method="POST" style="display:none">
+<span type="submit" method="POST" id="buttonAppear"></span>
+<table class="table">
+  <thead>
+    <tr>
+      
+      <th scope="col">Positive Candidates</th>
+      <th scope="col">Negative Candidates</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td class = "table-danger">1</td>
+      <td class = "table-success">2</td>
+      
+    </tr>
+ 
+
+  </tbody>
+</table>
+</body>

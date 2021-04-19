@@ -1,0 +1,32 @@
+{
+  "name": "Node-MYSQL",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "^2.4.3",
+    "body-parse": "^0.1.0",
+    "body-parser": "^1.19.0",
+    "chai": "^4.3.4",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "hbs": "^4.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^8.3.2",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.4.18",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "nodemon": "^2.0.7",
+    "twilio": "^3.57.0",
+    "util": "^0.12.3"
+  }
+}

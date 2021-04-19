@@ -1,0 +1,41 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<title>Home</title>
+	<link rel="stylesheet" type="text/css" href="css\TeamStats.css">
+	<script src="js\TeasmStats.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+	<section id="container">
+		<a href = "Home.html">Home</a>
+		<p>Overall Status: Good</p>
+		<p><div id="piechart"></div></p>
+			<script type="text/javascript">
+				// Load google charts
+				google.charts.load('current', {'packages':['corechart']});
+				google.charts.setOnLoadCallback(drawChart);
+
+				// Draw the chart and set the chart values
+				function drawChart() {
+				  var data = google.visualization.arrayToDataTable([
+				  ['Members', 'Positive Cases'],
+				  ['Positive', 1],
+				  ['Negative', 2]
+				]);
+
+				  // Optional; add a title and set the width and height of the chart
+				  var options = {'title':'Group Status', 'width':550, 'height':400};
+
+				  // Display the chart inside the <div> element with id="piechart"
+				  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+				  chart.draw(data, options);
+				}
+				</script>
+
+</body>
+</html>
+	
+</section>
+</body>
+</html>

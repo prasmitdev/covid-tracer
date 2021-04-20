@@ -50,7 +50,7 @@ exports.register = (req, res)=>{
     sendEmailandText = (email, phone)=>{
         client.messages.create({
             body: `Welcome to Covid Contact Tracer. You will recieve a warning text from this number if we suspect you have been contracted with COVID-19.`,
-            to: phone,  // Text this number
+            to: '+1'+phone,  // Text this number
             from: '+12016902174' // From a valid Twilio number
         });
      //----------------------------------------

@@ -17,7 +17,10 @@ exports.newGroup = (req,res)=>{
                 db.query('SELECT group_name FROM groups WHERE user_id = ?',[results[0].user_id], (err,Finalresult)=>{
                     if(err) throw err
                     console.log(Finalresult)
-                    res.render('GR',{message: "Group created"})
+                    res.render('GR',{
+                        message: "Group created",
+                        id: [results[0].user_id]
+                    })
                 })
                 
             }

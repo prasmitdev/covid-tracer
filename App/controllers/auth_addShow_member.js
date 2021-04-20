@@ -43,21 +43,23 @@ exports.addMember = (req,res)=>{
 
 
 exports.showMember = (req,res)=>{
-    let vals = [];
+    
+
     let mysql =`SELECT 
                     u.first_name, 
                     u.last_name,
                     u.email 
                 FROM  USERS u 
-                    JOIN (SELECT user_id FROM GROUPS WHERE group_id= ?) as p ON (u.user_id = p.user_id) `
+                    JOIN (SELECT user_id FROM GROUPS WHERE group_id= ? AND user_id NOT LIKE ?) as p ON (u.user_id = p.user_id) `
 
-    db.query(mysql, [req.params.id], (err, result)=>{
+    db.query(mysql, [req.params.id, req.user.user_id], (err, result)=>{
         if(err) throw err
         else{
-            console.log(result);
+            
             res.render('GroupInfo', {
                 result,
-                id: req.user.user_id
+                id: req.user.user_id,
+                group_id: req.params.id
             })
            
         }

@@ -38,8 +38,8 @@ exports.login = async (req,res)=>{
                 }
                 res.cookie('jwt', token, cookieOptions);                
                 res.status(200).render('index',{
-                    name: results[0].first_name,
-                    email: email
+                    user: id
+                    
                 })
             }
         })

@@ -17,12 +17,21 @@
                 <li><a href="/auth/logout">Log Out</a></li>
         </ul>
     </nav>
+    {{#if tested_positive}}
+                <div class="alert alert-warning alert-danger fade show" role="alert">
+        <strong>{{tested_positive}}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+    {{/if}}
+
     <div class="container mt-4">
         <div class="row">
             <div class="col-4">
                 <div class="card">
                     <div class="avatar-ctn">
-                        <img src="/avatar.jpg" alt="user picture" class="avatar">
+                        {{!-- <img src="/avatar.jpg" alt="user picture" class="avatar"> --}}
                     </div>
                     
             <div class="card-body">
@@ -31,9 +40,19 @@
                 {{#if email}}
                 <a href="#" class="btn btn-primary">{{email}}</a>
                 {{/if}}
-                <br><br>
-                <p><a href="#"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">I Have Tested Positive for COVID-19</button></a>
-            </div>
+                <br><br><hr>
+                <form action="/profile/{{id}}" method="POST">
+                    
+                    
+                    {{#if tested_positive}}
+                    <p><a href="/profile/{{id}}"><button type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">I Have Been Recovered</button></a>
+                    {{else}}
+                    <label for="testedDate">Enter Date</label>
+                        <input type="date" name="date" id="testedDate">
+                    <p><a href="/profile/{{id}}"><button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">I have been tested positive COVID-19</button></a>
+                    {{/if}}
+                </form>
+                </div>
             
         </div>
         </div>

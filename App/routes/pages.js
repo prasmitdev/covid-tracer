@@ -1,13 +1,14 @@
 const express = require('express');
 const db = require('../db/db');  
-const authController = require('../controllers/auth_profile')
-const authControllerMemberAddition = require('../controllers/auth_addShow_member')
+const authController = require('../controllers/auth_profile');
+const authControllerMemberAddition = require('../controllers/auth_addShow_member');
+const authTestedPositive = require('../controllers/auth_tested_positive');
+const authContactTracer = require('../controllers/auth_contact_tracing');
 const router = express.Router();
 
 router.get('/',authController.isLoggedIn, (req, res) =>{   
     if(req.user){
         let id = req.user.user_id;
-        console.log(id);
         res.render('index',{
         user:req.user,
         id
@@ -17,9 +18,8 @@ router.get('/',authController.isLoggedIn, (req, res) =>{
     }
     
 })
-//Renders register page
+
 router.get('/register', (req, res) =>{res.render('register');})
-//Renders login page
 router.get('/login',(req,res)=>{res.render('login');})
 
 router.get('/profile/:id',authController.isLoggedIn,(req,res)=>{
@@ -28,12 +28,27 @@ router.get('/profile/:id',authController.isLoggedIn,(req,res)=>{
         db.query('SELECT * FROM groups WHERE user_id = ?', [req.params.id],(err, result)=>{
             if(err) throw err;
             else{
-                res.render('profile',{
-                    name:req.user.first_name +" "+ req.user.last_name,
-                    email:req.user.email,
-                    id,
-                    result
+                db.query('SELECT positive from users WHERE user_id = ?',[req.params.id],(err,results)=>{
+                    if(err) throw err;
+                    if(req.user.positive === 'yes'){
+                        res.render('profile',{
+                            name:req.user.first_name +" "+ req.user.last_name,
+                            email:req.user.email,
+                            id,
+                            result,
+                            tested_positive: "WARNING: You have been tested positive. Quarantine yourself for 14 days from " + req.user.date_tested_positive
+                        })
+                    }
+                    else{
+                        res.render('profile',{
+                            name:req.user.first_name +" "+ req.user.last_name,
+                            email:req.user.email,
+                            id,
+                            result
+                        })
+                    }
                 })
+                
             }
         })
 
@@ -41,8 +56,13 @@ router.get('/profile/:id',authController.isLoggedIn,(req,res)=>{
    }else{
     res.redirect('/login');
    }
-})
+});
+
+router.post('/group/:id',authController.isLoggedIn, authContactTracer.contact_tracer);
 router.post('/addmember', authControllerMemberAddition.addMember);
+
+router.post('/profile/:id',authController.isLoggedIn, authTestedPositive.tested_positive)
+
 router.get('/addmember',authController.isLoggedIn, (req,res)=>{
     if(req.user){
         res.render('Addmember',{

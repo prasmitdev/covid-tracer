@@ -11,5 +11,6 @@ router.post('/register', authController.register);
 router.post('/login', authLogin.login);
 router.post('/GR',authNewGroup.newGroup);
 
+
 router.get('/logout',authProfileLogOut.logOut)
 module.exports = router;

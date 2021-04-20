@@ -22,7 +22,9 @@ db.connect((error) =>{
     if(error){
         console.log(error)
     } else {
-        console.log("MYSQL Connected");
+        console.log("||     MYSQL Database Connected     ||");
+        console.log("||----------------------------------||")
+        console.log("||----------------------------------||")
     }
 
 });
@@ -32,5 +34,7 @@ app.use('/', require('./routes/pages'));
 app.use('/auth', require('./routes/auth'));
 
 app.listen(3000, () =>{
-    console.log("Server is running on port 3000");
+    console.log("||----------------------------------||")
+    console.log("||----------------------------------||")
+    console.log("||  Server is running on port 3000  ||");
 });

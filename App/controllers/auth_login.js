@@ -25,6 +25,8 @@ exports.login = async (req,res)=>{
             }
             else{
                 const id = results[0].user_id;
+                const fname = results[0].first_name;
+                const lname = results[0].last_name;
 
                 const token = jwt.sign({id}, process.env.JWT_SECRET,{
                     expiresIn: process.env.JWT_EXPIRES_IN
@@ -38,8 +40,8 @@ exports.login = async (req,res)=>{
                 }
                 res.cookie('jwt', token, cookieOptions);                
                 res.status(200).render('index',{
-                    user: id
-                    
+                    user: id,
+                    name: fname+ " "+lname
                 })
             }
         })

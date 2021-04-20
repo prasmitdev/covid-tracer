@@ -34,13 +34,20 @@ exports.register = (req, res)=>{
         first_name: fname, last_name: lname, age: age, email: email, phone: phone, password: password}, (error, result) =>{
             if(error){
                 console.log(error);
-            } 
-                sendEmailandText(email,phone);
-                console.log("Success!")
                 res.render('register', {
-                    message: 'User registered successfully'
+                    message: 'Error Occured. Try again'
                     
                 });
+            } 
+                else{
+                    sendEmailandText(email,phone);
+                    console.log("Success!")
+                    res.render('register', {
+                        message: 'User registered successfully'
+                        
+                    });
+                }
+                
             
         })
         
@@ -54,13 +61,13 @@ exports.register = (req, res)=>{
             from: '+12016902174' // From a valid Twilio number
         });
      //----------------------------------------
-            let transporter = emailSender.createTransport(smtp({
+            let transporter = emailSender.createTransport({
                 service: 'gmail',
                 auth: {
                     user: 'covid19.contact.tracer2021@gmail.com',
                     pass: process.env.PASSWORD
                 }
-            }));
+            });
     
             let mailDetails = {
                 from : 'Covid Contact Tracer', 

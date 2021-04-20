@@ -78,7 +78,7 @@
       <th scope="col">Email</th>
     </tr>
   </thead>
-
+  
   {{#each result}}
   <tbody>
     <tr onMouseOver="this.bgColor = '#C0C0C0'" onMouseOut="this.bgColor = '#fffff'" bgcolor="#FFFFF">
@@ -90,8 +90,9 @@
   {{/each}}
 
 </table>
-
-<form action="/group/{{group_id}}" method="POST">
+<br><br>
+{{#if result}}
+<form action="/group/{{group_id}}" method="POST" style="text-align:center">
   <label for="email" >Verify email address of a person you contacted: </label>
   <input type="email" name="contacted_email"><br><br>
   <label for="testedDate">Enter the date of contact: </label>
@@ -99,6 +100,9 @@
   <button class ="btn btn-primary" type="submit" style="margin-left: 15px">Submit</button>
 
 </form>
+{{else}}
+    <h3 style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center">Group is empty. Click <a href="/addmember">here</a> here to add members</h3>
+{{/if}}
 
 </body>
  

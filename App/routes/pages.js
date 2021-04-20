@@ -11,7 +11,8 @@ router.get('/',authController.isLoggedIn, (req, res) =>{
         let id = req.user.user_id;
         res.render('index',{
         user:req.user,
-        id
+        name:req.user.first_name + " " + req.user.last_name
+    
     }); 
     }else{
         res.render('index');
@@ -40,11 +41,13 @@ router.get('/profile/:id',authController.isLoggedIn,(req,res)=>{
                         })
                     }
                     else{
+                        var dt = new Date()
                         res.render('profile',{
                             name:req.user.first_name +" "+ req.user.last_name,
                             email:req.user.email,
                             id,
-                            result
+                            result,
+                            dt
                         })
                     }
                 })

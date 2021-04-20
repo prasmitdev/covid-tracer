@@ -1,7 +1,7 @@
-const express = require('express');
-const { NetworkContext } = require('twilio/lib/rest/supersim/v1/network');
+const smtp = require('nodemailer-smtp-transport');
+const emailSender = require('nodemailer');
 const db = require('../db/db');
-const sendEmail = require('./emailsender')
+const client = require('./sms')
 
 exports.addMember = (req,res)=>{
     let {member_email, unique_id} = req.body;
@@ -14,6 +14,7 @@ exports.addMember = (req,res)=>{
             return res.render('Addmember',{message: "The user is not registered. Please enter the email of registered user"})
         }else {
             memberid = result[0].user_id;
+            let phone = result[0].phone;
             console.log(memberid)
             db.query('SELECT * FROM groups WHERE group_id = ?', [unique_id], (err, result)=>{
                 if(err) throw err;
@@ -25,7 +26,8 @@ exports.addMember = (req,res)=>{
                     db.query('INSERT INTO groups SET group_id = ?, group_name = ?, user_id = ?', [unique_id, groupName, memberid],(err, result)=>{
                         if(err) throw err;
                         else{
-                            sendEmail(member_email);
+                            sendText(phone, groupName);
+                            sendEmail(member_email,groupName);
                             return res.render('Addmember', {
                                 messageSuccess: `The user has been registered to group ${groupName}`
                             })
@@ -65,4 +67,42 @@ exports.showMember = (req,res)=>{
         }
     })
     
+}
+
+
+
+const sendEmail = (email, groupName) =>{
+    let transporter = emailSender.createTransport(smtp({
+    service: 'gmail',
+    auth: {
+        user: 'covid19.contact.tracer2021@gmail.com',
+        pass: process.env.PASSWORD
+    }
+}));
+
+let mailDetails = {
+    from : 'Covid Contact Tracer', 
+    to   : email,
+    subject: 'Covid Contact Tracer',
+    html : `<p>You have been added to a group ${groupName}. Update your application if you test positive or contact someone in the group</p>` 
+};
+console.log(email);
+
+transporter.sendMail(mailDetails, (err, info) => {
+    if(err){
+        console.log('Error sending email');
+        throw err;
+    } else{
+        console.log('Email Sent Successfully');
+    }
+});
+}
+const sendText = (phone, groupName)=>{
+
+    client.messages.create({
+        body: `You have been added to a group ${groupName} . Update your application if you test positive or contact someone in the group`,
+        to: '+1'+phone,  // Text this number
+        from: '+12016902174' // From a valid Twilio number
+    });
+    console.log('Text Sent Successfully')
 }

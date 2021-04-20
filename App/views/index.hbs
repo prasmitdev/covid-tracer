@@ -27,9 +27,13 @@
         <h1 class="display-4">Covid Contact Tracer</h1>
         <p class="lead">Welcome to the homepage of our newly designed covid-19 contact tracing app.</p>
         <hr class="my-4">
+         {{#if name}}
+         <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Welcome {{name}}</h3>
+         {{else}}
          <p>REGISTER NOW! Help yourself and your friends and family monitor themselves on the pandemic</p>
          <a class="btn btn-primary btn-lg" href="/register" role="button">Register</a>
          <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>
+         {{/if}}
     </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

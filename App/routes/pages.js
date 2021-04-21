@@ -10,8 +10,8 @@ router.get('/',authController.isLoggedIn, (req, res) =>{
     if(req.user){
         let id = req.user.user_id;
         res.render('index',{
-        user:req.user,
-        name:req.user.first_name + " " + req.user.last_name
+        getuser: req.user,
+        name: req.user.first_name + " " + req.user.last_name
     
     }); 
     }else{
@@ -41,13 +41,12 @@ router.get('/profile/:id',authController.isLoggedIn,(req,res)=>{
                         })
                     }
                     else{
-                        var dt = new Date()
+                        
                         res.render('profile',{
                             name:req.user.first_name +" "+ req.user.last_name,
                             email:req.user.email,
                             id,
-                            result,
-                            dt
+                            result
                         })
                     }
                 })
@@ -64,7 +63,10 @@ router.get('/profile/:id',authController.isLoggedIn,(req,res)=>{
 router.post('/group/:id',authController.isLoggedIn, authContactTracer.contact_tracer);
 router.post('/addmember', authControllerMemberAddition.addMember);
 
-router.post('/profile/:id',authController.isLoggedIn, authTestedPositive.tested_positive)
+router.post('/profile/:id',authController.isLoggedIn, authTestedPositive.tested_positive);
+router.post('/recovered',authController.isLoggedIn, authTestedPositive.tested_negative);
+
+
 
 router.get('/addmember',authController.isLoggedIn, (req,res)=>{
     if(req.user){
@@ -79,8 +81,19 @@ router.get('/addmember',authController.isLoggedIn, (req,res)=>{
 
 
 router.get('/group/:id',authController.isLoggedIn, authControllerMemberAddition.showMember);
-router.get('/newgroup',(req,res)=>{
-    res.render('GR');
+router.get('/newgroup',authController.isLoggedIn, (req,res)=>{
+    res.render('GR',{
+        id:req.user.user_id
+    });
 })
+
+
+
+
+
+
+
+
+
 
 module.exports = router;

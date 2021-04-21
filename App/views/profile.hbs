@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="/style.css">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+     
     <title>Document</title>
 </head>
 <body>
@@ -41,16 +46,28 @@
                 <a href="#" class="btn btn-primary">{{email}}</a>
                 {{/if}}
                 <br><br><hr>
+
+                {{#if tested_positive}}
+                    <form action="/recovered" method="POST">
+                        <button type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">I Have Been Recovered</button>
+                    </form>               
+                {{else}}
+                
                 <form action="/profile/{{id}}" method="POST">
-                    
-                    
-                    {{#if tested_positive}}
-                    <p><a href="/profile/{{id}}"><button type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">I Have Been Recovered</button></a>
-                    {{else}}
-                    <label for="testedDate">Enter Date</label>
-                        <input type="date" name="date" id="testedDate" max="{{dt}}">
+
+                    <label for="date">Enter Date</label>
+                    <input type="text" name="date" id="datepicker" placeholder="yyyy-mm-dd">
+                       
                     <p><a href="/profile/{{id}}"><button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">I have been tested positive COVID-19</button></a>
+                    <script>
+                    $("#datepicker").datepicker({
+                        dateFormat: "yy-mm-dd",
+                        maxDate: '0D',
+                        minDate: '-14D'
+                    });
+            </script>
                     {{/if}}
+                    
                 </form>
                 </div>
             
@@ -88,11 +105,17 @@
         
     </div>    
     
+
+
+
+                        
     </div>
         {{#if message}}
             <h4 class="alert alert-danger mt-4">{{message}}</h4>
         {{/if}}
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+    
 </body>
 </html>

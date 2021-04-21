@@ -19,7 +19,7 @@ exports.newGroup = (req,res)=>{
                     console.log(Finalresult)
                     res.render('GR',{
                         message: "Group created",
-                        id: [results[0].user_id]
+                        id: results[0].user_id
                     })
                 })
                 

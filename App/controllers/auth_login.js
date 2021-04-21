@@ -15,7 +15,7 @@ exports.login = async (req,res)=>{
                 message:"Please provide email and password"
             });
         }
-        db.query('SELECT * FROM users WHERE email = ?',[email], async (err,results)=>{
+        db.query('SELECT * FROM users WHERE email = ?',[email],  (err,results)=>{
             // console.log(results); 
             // !(await bcrypt.compare(password, results[0].password))
             if(!results || password != results[0].password){
@@ -40,7 +40,7 @@ exports.login = async (req,res)=>{
                 }
                 res.cookie('jwt', token, cookieOptions);                
                 res.status(200).render('index',{
-                    user: id,
+                    userid: id,
                     name: fname+ " "+lname
                 })
             }

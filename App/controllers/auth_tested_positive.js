@@ -7,6 +7,13 @@ exports.tested_positive = (req, res)=>{
     console.log(req.body);
     console.log(req.user.user_id);
     let mark_positive = 'yes';
+
+    let _SQL_check_Contacted = 'SELECT user_id, contacted_id FROM contact WHERE user_id = ? OR contacted_id = ?'
+    db.query(_SQL_check_Contacted,[req.user.user_id, req.user.user_id], (err, results)=>{
+        if(err) throw err;
+        console.log(results)
+    })
+
     db.query('UPDATE users SET positive = ? , date_tested_positive = ? WHERE user_id = ?',[mark_positive, req.body.date, req.user.user_id],(err, results)=>{
         if(err) throw err;
         else{
